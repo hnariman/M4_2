@@ -7,7 +7,7 @@ export default class Validator {
     validate() {
         let error = ``;
         this.errorListWrapper.innerHTML = error;
-        if(this.task.sum > 0 && this.task.starterSum > 0 && this.term > 0 && this.task.sum > this.task.starterSum) {
+        if(this.task.sum > 0 && this.task.starterSum > 0 && this.task.term > 0 && this.task.sum > this.task.starterSum) {
             return true;
         }
         if(!(this.task.sum > 0)) {
@@ -19,10 +19,12 @@ export default class Validator {
         if(!(this.task.starterSum > 0)) {
             error += `<li>Неверный формат стартовой суммы</li>`;
         }
-        if(!(this.term > 0)) {
+        if(!(this.task.term > 0)) {
+            console.log(this.term);
             error += `<li>Неверный формат срока цели</li>`;
         }
         this.errorListWrapper.innerHTML = error;
+        
         return false;
     }
 }
