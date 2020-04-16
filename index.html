@@ -1,34 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Piggy Bank</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-<div class="container">
-    <div class="add__target">
-        <h1>Добавить Цель</h1>
-        <div>
-            <label for="task__name">Название</label>
-            <input type="text" placeholder="Task Name" id="task__name">
 
-        </div>
-        <div>
-            <label for="task__sum">Сумма</label>
-            <input type="text" placeholder="Wish sum" id="task__sum">
-        </div>
-        <div>
-            <label for="task__term">Срок</label>
-            <input type="text" placeholder="Term" id="task__term">
-        </div>
-        <div>
-            <label for="task__start__sum">Стартовая сумма</label>
-            <input type="text" placeholder="Start sum" id="task__start__sum">
-        </div>
-        <a href="#">Добвавить </a>
-    </div>
-</div>
-<script src="dist/main.js"></script>
+<body>
+    <header>
+        <h1>Онлайн-копилка</h1>
+    </header>
+    <main class="container">
+        <section class="add__target">
+            <h2>Добавить цель</h2>
+            <div>
+                <label for="task__name">Название</label>
+                <input type="text" placeholder="Task Name" id="task__name">
+            </div>
+            <div>
+                <label for="task__sum">Сумма</label>
+                <input type="text" placeholder="Wish sum" id="task__sum">
+            </div>
+            <div>
+                <label for="task__term">Срок</label>
+                <input type="text" placeholder="Term" id="task__term">
+            </div>
+            <div>
+                <label for="task__start__sum">Стартовая сумма</label>
+                <input type="text" placeholder="Start sum" id="task__start__sum">
+            </div>
+            <a href="#">Добавить </a>
+        </section>
+        <section class="all__targets">
+            <h2>Открытые цели</h2>
+            <div class="target">
+                <h3>На машину</h3>
+                <p> до: июль, 2021 </p>
+                <p> конечная сумма: 1500000 рублей </p>
+                <p> осталось накопить: 149999 рублей </p>
+            </div>
+
+        </section>
+    </main>
+
+    <script src="dist/main.js"></script>
 </body>
+
 </html>
