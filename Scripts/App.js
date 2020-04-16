@@ -1,5 +1,8 @@
 import Calculator from "./calculate";
+import Validator from "./Validator";
 import Task from "./Task";
+
+
 
 let counter = 0;
 class Application {
@@ -7,13 +10,19 @@ class Application {
         document.querySelector('.add__goal a').addEventListener('click', this.Run);
     }
     Run(e) {
+        e.preventDefault();
         let name = document.querySelector('#task__name').value,
             sum  = Number(document.querySelector('#task__sum').value),
             term = Number(document.querySelector('#task__term').value),
             allGoals = document.querySelector('.all__goals'),
             starterSum  = Number(document.querySelector('#task__start__sum').value);
-        e.preventDefault();
-        const task = new Task(name,sum,term,starterSum); // our inputs here
+        const task = new Task(name,sum,term,starterSum);
+
+        const validator = new Validator(task);
+        console.log(validator.validate());
+        if(validator.validate() == false) {
+            return;
+        }
         const calculate = new Calculator();
         calculate.calc(task).then(
             result =>{
