@@ -15,35 +15,47 @@
         <h1>Онлайн-копилка</h1>
     </header>
     <main class="container">
-        <section class="add__target">
+        <section class="add__goal">
             <h2>Добавить цель</h2>
-            <div>
-                <label for="task__name">Название</label>
-                <input type="text" placeholder="Task Name" id="task__name">
-            </div>
-            <div>
-                <label for="task__sum">Сумма</label>
-                <input type="text" placeholder="Wish sum" id="task__sum">
-            </div>
-            <div>
-                <label for="task__term">Срок</label>
-                <input type="text" placeholder="Term" id="task__term">
-            </div>
-            <div>
-                <label for="task__start__sum">Стартовая сумма</label>
-                <input type="text" placeholder="Start sum" id="task__start__sum">
-            </div>
-            <a href="#">Добавить </a>
+            <input type="text" placeholder="Введите название..." id="task__name">
+            <input type="text" placeholder="Введите желаемую сумму..." id="task__sum">
+            <input type="text" placeholder="Введите срок цели..." id="task__term">
+            <input type="text" placeholder="Введите стартовую сумму..." id="task__start__sum">
+            <a href="#"> Подобрать </a>
+            <section class="show-results">
+                <div>
+                    <p>Результаты для цели "На квартиру". Накопите 5000000 рублей за 6 месяцев с начальной суммой 10000...
+                    </p>
+                </div>
+                <table>
+                    <tr>
+                        <th>Название вклада</th>
+                        <th>Ставка</th>
+                        <th>Ежемесячный платёж</th>
+                    </tr>
+                </table>
+            </section>
         </section>
-        <section class="all__targets">
+        <section class="all__goals">
             <h2>Открытые цели</h2>
-            <div class="target">
-                <h3>На машину</h3>
-                <p> до: июль, 2021 </p>
-                <p> конечная сумма: 1500000 рублей </p>
-                <p> осталось накопить: 149999 рублей </p>
+            <div class="goal">
+                <div class="goal-description">
+                    <h3>На машину</h3>
+                    <p> до: июль, 2021 </p>
+                    <p> конечная сумма: 1500000 рублей </p>
+                    <p> осталось накопить: 149999 рублей </p>
+                </div>
+                <button class="delete-button"> ✕ </button>
             </div>
-
+            <div class="goal">
+                <div class="goal-description">
+                    <h3>На отпуск</h3>
+                    <p> до: июль, 2021 </p>
+                    <p> конечная сумма: 150000 рублей </p>
+                    <p> осталось накопить: 30000 рублей </p>
+                </div>
+                <button class="delete-button"> ✕ </button>
+            </div>
         </section>
     </main>
 
