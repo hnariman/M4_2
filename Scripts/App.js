@@ -19,10 +19,10 @@ class Application {
         const task = new Task(name,sum,term,starterSum);
 
         const validator = new Validator(task);
-        console.log(validator.validate());
         if(validator.validate() == false) {
             return;
         }
+        
         const calculate = new Calculator();
         calculate.calc(task).then(
             result =>{
