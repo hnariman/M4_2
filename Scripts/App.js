@@ -5,6 +5,7 @@ import Task from "./Task";
 
 
 let counter = 0;
+const GOAL__LIST = {};
 class Application {
     constructor() {
         document.querySelector('.add__goal a').addEventListener('click', this.Run);
@@ -53,6 +54,8 @@ class Application {
                 `;
                 div.append(desc);
                 counter++;
+                //  Save task in global variable 
+                GOAL__LIST[div.id] = task;
             }
         )
     }
