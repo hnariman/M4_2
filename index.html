@@ -10,32 +10,19 @@
 <header>
     <h1>Онлайн Копилка</h1>
 </header>
-<div class="container">
-    <div class="add__target">
-        <h1>Добавить Цель</h1>
-        <div>
-            <label for="task__name">Название</label>
-            <input type="text" placeholder="Task Name" id="task__name">
-
-        </div>
-        <div>
-            <label for="task__sum">Сумма</label>
-            <input type="text" placeholder="Wish sum" id="task__sum">
-        </div>
-        <div>
-            <label for="task__term">Срок</label>
-            <input type="text" placeholder="Term" id="task__term">
-        </div>
-        <div>
-            <label for="task__start__sum">Стартовая сумма</label>
-            <input type="text" placeholder="Start sum" id="task__start__sum">
-        </div>
-        <a href="#">Добвавить </a>
-    </div>
-    <div class="block">
-        <h1>Открытые Цели :</h1>
-    </div>
-</div>
+<main class="container">
+    <section class="add__goal">
+        <h2>Добавить цель</h2>
+        <input type="text" placeholder="Введите название..." id="task__name">
+        <input type="text" placeholder="Введите желаемую сумму..." id="task__sum">
+        <input type="text" placeholder="Введите срок цели..." id="task__term">
+        <input type="text" placeholder="Введите стартовую сумму..." id="task__start__sum">
+        <a href="#"> Подобрать </a>
+    </section>
+    <section class="all__goals">
+        <h2>Открытые цели</h2>
+    </section>
+</main>
 <script src="dist/main.js"></script>
 </body>
 </html>
