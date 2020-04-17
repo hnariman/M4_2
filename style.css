@@ -101,21 +101,44 @@ h1 {
 .goal h3 {
     margin: 3px 5px 5px -3px;
 }
-
-.delete-button {
+.save-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 22px;
     height: 22px;
-
     border: 1px solid #C4C4C4;
     background-color: #222831;
     box-sizing: border-box;
     border-radius: 71px;
     margin: 5px;
-
     color: #C4C4C4;
-    font-size: 12.5px;
+    font-size: 10px;
     text-indent: -1.5px;
-
+    cursor: pointer;
+    outline: none;
+}
+.save-button:hover{
+    background: #ac4661;
+    color: #e9e7e9;
+    border: 1px solid #e9e7e9;
+}
+.delete-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 22px;
+    height: 22px;
+    border: 1px solid #C4C4C4;
+    background-color: #222831;
+    box-sizing: border-box;
+    border-radius: 71px;
+    margin: 5px;
+    color: #C4C4C4;
+    font-size: 10px;
+    text-indent: -1.5px;
+    cursor: pointer;
+    outline: none;
 }
 
 .delete-button:hover {
@@ -175,19 +198,22 @@ h1 {
     background-color: rgb(27, 17, 17);
 }
 
-.edit-button {
+.edit-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 22px;
     height: 22px;
-
     border: 1px solid #C4C4C4;
     background-color: #222831;
     box-sizing: border-box;
     border-radius: 71px;
     margin: 5px;
-
     color: #C4C4C4;
-    font-size: 12.5px;
+    font-size: 10px;
     text-indent: -1.5px;
+    cursor: pointer;
+    outline: none;
 }
 
 .edit-button:hover {

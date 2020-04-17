@@ -80,26 +80,33 @@ class Application {
 
                 //*******РЕДАКТИРОВАНИЕ ЭЛЕМЕНТОВ ПРИ ПОМОЧИ ОБРАБОТЧИКОВ СОБЫТИЙ******
                 //Создание кнопки редактировать
-                let redact = document.createElement('img');
-                redact.setAttribute('src','https://image.flaticon.com/icons/svg/1160/1160515.svg');
-                redact.classList.add('red');
+                // let redact = document.createElement('img');
+                // redact.setAttribute('src','https://image.flaticon.com/icons/svg/1160/1160515.svg');
+                // redact.classList.add('red');
+                let getControl = document.createElement('div');
+                getControl.classList.add('goal-control');
+                div.append(getControl);
 
+                let redact = document.createElement('button');
+                redact.innerHTML =`🖉`;
+                redact.classList.add('edit-button');
                 //Создание кнопки закрытия
                 // let closeButton = document.createElement('img');
                 // closeButton.classList.add('close');
                 // closeButton.setAttribute('src','https://image.flaticon.com/icons/svg/190/190406.svg');
                 let closeButton = document.createElement('button');
+                closeButton.innerHTML =` &#9932;`;
                 closeButton.classList.add('delete-button');
 
-                div.appendChild(redact);
-                div.appendChild(closeButton);
+                getControl.appendChild(redact);
+                getControl.appendChild(closeButton);
                 closeButton.addEventListener('click',closeBlock);
                 counter++;
                 //Логика нажатия на кнопку редактировать
                 redact.addEventListener('click',(e) =>{
                    e.preventDefault();
-                       let monthlyAdd = e.target.parentNode.querySelector('.monthly__add'),//Поле ежемесячного платежа
-                       inputs = e.target.parentNode.querySelectorAll('input');//Поля ввода внутри блока goal
+                       let monthlyAdd = e.target.parentNode.parentNode.querySelector('.monthly__add'),//Поле ежемесячного платежа
+                       inputs = e.target.parentNode.parentNode.querySelectorAll('input');//Поля ввода внутри блока goal
                        inputs.forEach(el => {
                            el.removeAttribute('readonly');
                            el.classList.add('edit')
@@ -108,10 +115,10 @@ class Application {
 
 
                        });// Отключение атрибута readonly  во всех инпутах
-                       let save = document.createElement('img');//Создание кнопки сохранения
-                        save.classList.add('red');
-                        save.setAttribute('src','https://image.flaticon.com/icons/svg/380/380020.svg');
-                        div.appendChild(save);
+                       let save = document.createElement('button');//Создание кнопки сохранения
+                        save.classList.add('save-button');
+                        save.innerHTML=`&#128190;`;
+                        getControl.insertBefore(save,closeButton);
 
 
                         redact.style.display ='none';//Отключение кнопки педактирования
@@ -120,10 +127,10 @@ class Application {
                         //Логика сохранения и пересчет введенных данных
                         save.addEventListener('click',(e) =>{
                            e.preventDefault();
-                           let termCount = +(e.target.parentNode.querySelector('.term__name').value), // Инициализация всех инпутов
-                               titleName = e.target.parentNode.querySelector('.title').value,
-                               finalName = +(e.target.parentNode.querySelector('.final__Amount').value),
-                               startSumName = +(e.target.parentNode.querySelector('.start__name').value);
+                           let termCount = +(e.target.parentNode.parentNode.querySelector('.term__name').value), // Инициализация всех инпутов
+                               titleName = e.target.parentNode.parentNode.querySelector('.title').value,
+                               finalName = +(e.target.parentNode.parentNode.querySelector('.final__Amount').value),
+                               startSumName = +(e.target.parentNode.parentNode.querySelector('.start__name').value);
 
                            const newTasks = new Task(titleName,finalName,termCount,startSumName); // Создание прототипа класса  Task
                            const calculateInside = new Calculator(); // Создание прототипа класса  Calculator
@@ -151,7 +158,7 @@ class Application {
 function closeBlock(e) {
     e.preventDefault();
     if(confirm('Вы уверены что хотите удалить?')){
-        e.target.parentNode.remove();
+        e.target.parentNode.parentNode.remove();
     }
 }
 new Application();
