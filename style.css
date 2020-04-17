@@ -136,6 +136,33 @@ h1 {
 .show-results p {
     font-size: 16px;
 }
+
 .goal-description p{
     font-size: 13px;
+}
+
+.error__list {
+    color: #ac4661;
+}
+
+.error__list li {
+    margin-top: 5px;
+}
+
+.delete__button {
+    cursor: pointer;
+}
+
+.add__goal .edit-button {
+    display: none;
+    padding: 8px 20%;
+    background-color: #46ac69;
+    text-decoration: none;
+    border-radius: 8px;
+    color: #e9e7e9;
+    margin-top: 10px;
+}
+
+.add__goal .edit-button:hover {
+    background-color: #31ab5b;
 }

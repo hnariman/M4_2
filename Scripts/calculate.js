@@ -5,7 +5,8 @@ export default class Calculator{
         let list = new BankProducts();
         let orders = [];
         return new Promise(resolve => {
-            list.getBanks().then(
+            list.getBanks()
+            .then(
                 result => result.json()
             )
                 .then(
@@ -28,6 +29,7 @@ export default class Calculator{
                             return (power);
                         }
                         resolve (pay);
+
                     }
                 );
         })
