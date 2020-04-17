@@ -16,7 +16,7 @@ class Application {
         e.preventDefault();
         const task = new Task(name,sum,term,starterSum); // our inputs here
         const calculate = new Calculator();
-        //Калькулятор считающий эежемесячный платеж
+        //Калькулятор считающий элемесячный платеж
         calculate.calc(task).then(
             result =>{
                 // Создание блока с задачей
@@ -97,11 +97,15 @@ class Application {
                    e.preventDefault();
                        let monthlyAdd = e.target.parentNode.querySelector('.monthly__add'),//Поле ежемесячного платежа
                        inputs = e.target.parentNode.querySelectorAll('input');//Поля ввода внутри блока goal
-                       inputs.forEach(el => el.removeAttribute('readonly'));// Отключение атрибута readonly  во всех инпутах
+                       inputs.forEach(el => {
+                           el.removeAttribute('readonly');
+                           el.style.backgroundColor = 'black';
+                       });// Отключение атрибута readonly  во всех инпутах
                        let save = document.createElement('img');//Создание кнопки сохранения
                         save.classList.add('red');
                         save.setAttribute('src','https://image.flaticon.com/icons/svg/380/380020.svg');
                         div.appendChild(save);
+
 
                         redact.style.display ='none';//Отключение кнопки педактирования
 
@@ -119,7 +123,10 @@ class Application {
                            //Передача прототипа в функцию прототипа класса Calculator
                            calculateInside.calc(newTasks).then(
                                result => {
-                                    inputs.forEach(el => el.setAttribute('readonly','readonly'));//Добавления атрибута readonly у всех инпутов
+                                    inputs.forEach(el => {
+                                        el.setAttribute('readonly','readonly');
+                                        el.style.backgroundColor = 'transparent';
+                                    });//Добавления атрибута readonly у всех инпутов
                                     redact.style.display ='inline'; // Возвращение кнопки редактирование
                                     save.style.display ='none'; // Удаление кнопки сохранения
 
@@ -129,12 +136,15 @@ class Application {
                        });
                 });
             }
+
         )
     }
 }
 //Функция закрытия блока
 function closeBlock(e) {
     e.preventDefault();
-    e.target.parentNode.remove();
+    if(confirm('Вы уверены что хотите удалить?')){
+        e.target.parentNode.remove();
+    }
 }
 new Application();

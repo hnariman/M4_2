@@ -28,6 +28,7 @@ export default class Calculator{
                             return (power);
                         }
                         resolve (pay);
+
                     }
                 );
         })
