@@ -99,7 +99,7 @@ class Application {
                        inputs = e.target.parentNode.querySelectorAll('input');//Поля ввода внутри блока goal
                        inputs.forEach(el => {
                            el.removeAttribute('readonly');
-                           el.style.backgroundColor = 'black';
+                           el.classList.add('edit')
                        });// Отключение атрибута readonly  во всех инпутах
                        let save = document.createElement('img');//Создание кнопки сохранения
                         save.classList.add('red');
@@ -125,7 +125,7 @@ class Application {
                                result => {
                                     inputs.forEach(el => {
                                         el.setAttribute('readonly','readonly');
-                                        el.style.backgroundColor = 'transparent';
+                                        el.classList.remove('edit');
                                     });//Добавления атрибута readonly у всех инпутов
                                     redact.style.display ='inline'; // Возвращение кнопки редактирование
                                     save.style.display ='none'; // Удаление кнопки сохранения
