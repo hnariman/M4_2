@@ -148,3 +148,7 @@ h1 {
 .error__list li {
     margin-top: 5px;
 }
+
+.delete__button {
+    cursor: pointer;
+}

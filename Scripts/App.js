@@ -38,8 +38,14 @@ class Application {
 
         //  Start calculate and produce a result
         const calculate = new Calculator();
-        calculate.calc(task).then(
-            result =>{
+        calculate.calc(task)
+        .then(
+            result => {
+                //  If we can't find or API can't give response
+                if(result == undefined) {
+                    throw 'Что-то пошло не так :)';
+                }
+                //  Add goal
                 let div = document.createElement('div');
                 div.classList.add('goal');
                 div.id = `task-${counter}`;
@@ -54,10 +60,45 @@ class Application {
                 `;
                 div.append(desc);
                 counter++;
+
                 //  Save task in global variable 
                 GOAL__LIST[div.id] = task;
+
+                //  Add goal delete button and delete handler 
+                const deleteButton = document.createElement('div');
+                deleteButton.innerHTML = '&#10060;';
+                deleteButton.classList.add('delete__button');
+                deleteButton.addEventListener('click', (e) => {
+                    const removableGoal     = e.currentTarget.parentElement;
+                    const removableGoalId   = removableGoal.id;
+                    //  Delete from DOM and GlobalList
+                    removableGoal.parentElement.removeChild(removableGoal);
+                    delete GOAL__LIST[removableGoalId];
+                });
+                div.append(deleteButton);
+
+                //  Add editing click to div and handler
+                div.addEventListener('click', (e) => {
+                    const editableDiv = e.currentTarget;
+                    if(e.target == deleteButton) {
+                        return;
+                    }
+                    const taskId = editableDiv.id;
+                    //  Add taskID data to inputs
+                    document.querySelector('#task__name').value         = GOAL__LIST[taskId].name;
+                    document.querySelector('#task__sum').value          = GOAL__LIST[taskId].sum;
+                    document.querySelector('#task__term').value         = GOAL__LIST[taskId].term;
+                    document.querySelector('#task__start__sum').value   = GOAL__LIST[taskId].starterSum;
+
+                    // Edit button display block
+                    // Hide add button (display)
+
+                });
             }
         )
+        .catch(error => {
+            alert(error);
+        });
     }
 }
 
