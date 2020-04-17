@@ -4,7 +4,7 @@ export default class BankProducts {
     }
     getBanks(){
         return new Promise(resolve => {
-           let array =  fetch(`https://5e8e012722d8cd0016a79e5c.mockapi.io/deposits`);
+           let array =  fetch(`https://bolta.herokuapp.com/deposits`);
            resolve(array);
         })
     }

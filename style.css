@@ -8,7 +8,6 @@ body {
 header {
     background-color: #909095;
     height: 70px;
-    z-index: 999999;
 }
 
 h1 {
@@ -23,12 +22,10 @@ h1 {
 .container{
     display: flex;
     justify-content: center;
-    align-items: center;
     flex-direction: row;
-    max-width: 980px;
+    /* max-width: 980px; */
     width: 100%;
     margin: 0 auto;
-    height: 255px;
     background-color: #222831;
 
 }
@@ -38,7 +35,6 @@ h1 {
     flex-direction: column;
     align-items: center;
     width: 40%;
-    height: 235px;
     background-color: #222831;
     padding: 10px;
     color: #e9e7e9;
@@ -75,11 +71,10 @@ h1 {
 
 .all__goals {
     display: flex;
-    width: 70%;
+    width: 60%;
     padding: 10px;
     background-color: #222831;
     color: #e9e7e9;
-    height: 235px;
     flex-direction: column;
     margin: 10px;
 }
@@ -104,22 +99,46 @@ h1 {
 }
 
 .goal h3 {
-    margin: 3px 5px 5px 5px;
+    margin: 3px 5px 5px -3px;
 }
-
-.delete-button {
+.save-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 22px;
     height: 22px;
-
     border: 1px solid #C4C4C4;
     background-color: #222831;
     box-sizing: border-box;
     border-radius: 71px;
-
+    margin: 5px;
     color: #C4C4C4;
-    font-size: 12.5px;
+    font-size: 10px;
     text-indent: -1.5px;
-
+    cursor: pointer;
+    outline: none;
+}
+.save-button:hover{
+    background: #ac4661;
+    color: #e9e7e9;
+    border: 1px solid #e9e7e9;
+}
+.delete-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 22px;
+    height: 22px;
+    border: 1px solid #C4C4C4;
+    background-color: #222831;
+    box-sizing: border-box;
+    border-radius: 71px;
+    margin: 5px;
+    color: #C4C4C4;
+    font-size: 10px;
+    text-indent: -1.5px;
+    cursor: pointer;
+    outline: none;
 }
 
 .delete-button:hover {
@@ -145,9 +164,11 @@ h1 {
 }
 .goal p{
     display: flex;
+    margin: 5px 0px;
 }
 .goal .title{
     font-size: 16px;
+    font-weight: bold;
 }
 .goal input {
     background-color: transparent;
@@ -155,15 +176,64 @@ h1 {
     outline: none;
     color: white;
     font-size: 13px;
-    padding-left: 5px;
+    padding: 3px;
+    margin-left: 10px;
+    width: 50%;
+    border-radius: 5px;
 }
 .red{
     position: absolute;
     top: 3px;
     right: 30px;
 }
-.close{
-    position: absolute;
-    top: 3px;
-    right: 0;
+
+.edit {
+    background-color: rgb(27, 17, 17);
+}
+
+.edit-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 22px;
+    height: 22px;
+    border: 1px solid #C4C4C4;
+    background-color: #222831;
+    box-sizing: border-box;
+    border-radius: 71px;
+    margin: 5px;
+    color: #C4C4C4;
+    font-size: 10px;
+    text-indent: -1.5px;
+    cursor: pointer;
+    outline: none;
+}
+
+.edit-button:hover {
+    background: #ac4661;
+    color: #e9e7e9;
+    border: 1px solid #e9e7e9;
+}
+
+.goal-control {
+    display: flex;
+    flex-direction: column;
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .add__goal {
+        width: 90%;
+    }
+
+    .all__goals {
+        width: 90%;
+    }
+
+    .all__goals h2 {
+        margin: auto;
+    }
 }
