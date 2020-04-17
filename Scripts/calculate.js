@@ -9,28 +9,29 @@ export default class Calculator{
             .then(
                 result => result.json()
             )
-            .then(
-                result => {
-                    let pay;
-                    orders.push(result);
-                    let newArray = orders[0].filter(function (el){
-                        return el.minTerm<=data.term &&
-                            el.maxTerm>=data.term &&
-                            el.minSumm<=data.sum
-                    });
-                    newArray.forEach(el=>{
-                        pay = (data.sum- (data.starterSum * Math.pow(1 + (el.income / 100) / 12,data.term)))/pow(data.term, el.income);
-                    });
-                    function pow(time,annual){  //Цикл меняющий ещемесячный взнос в зависимости от количества месяцев
-                        let power = 0;
-                        for(let i=time;i>0;i--){
-                            power += Math.pow(1+(annual/100)/12,i);
+                .then(
+                    result => {
+                        let pay;
+                        orders.push(result);
+                        let newArray = orders[0].filter(function (el){
+                            return el.minTerm<=data.term &&
+                                el.maxTerm>=data.term &&
+                                el.minSumm<=data.sum
+                        });
+                        newArray.forEach(el=>{
+                            pay = (data.sum- (data.starterSum * Math.pow(1 + (el.income / 100) / 12,data.term)))/pow(data.term, el.income);
+                        });
+                        function pow(time,annual){//Цикл меняющий ещемесячный взнос в зависимости от количества месяцев
+                            let power = 0;
+                            for(let i=time;i>0;i--){
+                                power += Math.pow(1+(annual/100)/12,i);
+                            }
+                            return (power);
                         }
-                        return (power);
+                        resolve (pay);
+
                     }
-                    resolve (pay);
-                }
-            );
+                );
         })
     }
 }

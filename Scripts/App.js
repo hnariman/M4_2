@@ -1,116 +1,150 @@
 import Calculator from "./calculate";
-import Validator from "./Validator";
 import Task from "./Task";
 
-
-
 let counter = 0;
-const GOAL__LIST = {};
 class Application {
     constructor() {
-        //  Add buttons listeners
         document.querySelector('.add__goal a').addEventListener('click', this.Run);
-        document.querySelector('.edit-button').addEventListener('click', this.handleEditClick);
-        //  Clear inputs from last iteration
-        document.querySelector('#task__name').value = '';
-        document.querySelector('#task__sum').value = '';
-        document.querySelector('#task__start__sum').value = '';
-        document.querySelector('#task__term').value = '';
     }
+    //Метод запускающий программу
     Run(e) {
-        e.preventDefault();
-        //  Get data from inputs and create structure from them
-        let name        = document.querySelector('#task__name').value,
-            sum         = Number(document.querySelector('#task__sum').value),
-            term        = Number(document.querySelector('#task__term').value),
-            allGoals    = document.querySelector('.all__goals'),
+        let name = document.querySelector('#task__name').value,
+            sum  = Number(document.querySelector('#task__sum').value),
+            term = Number(document.querySelector('#task__term').value),
+            allGoals = document.querySelector('.all__goals'),
             starterSum  = Number(document.querySelector('#task__start__sum').value);
-        const task      = new Task(name,sum,term,starterSum);
-        
-        //  Validate inputs via vaidator
-        const validator = new Validator(task);
-        if(validator.validate() == false) {
-            return;
-        }
-
-        //  Сlear inputs from last iteration
-        document.querySelector('#task__name').value         = '';
-        document.querySelector('#task__sum').value          = '';
-        document.querySelector('#task__term').value         = '';
-        document.querySelector('#task__start__sum').value   = '';
-
-        //  Start calculate and produce a result
+        e.preventDefault();
+        const task = new Task(name,sum,term,starterSum); // our inputs here
         const calculate = new Calculator();
-        calculate.calc(task)
-        .then(
-            result => {
-                //  If we can't find or API can't give response
-                if(result == undefined) {
-                    throw 'Что-то пошло не так :)';
-                }
-                //  Add goal
+        //Калькулятор считающий элемесячный платеж
+        calculate.calc(task).then(
+            result =>{
+                // Создание блока с задачей
                 let div = document.createElement('div');
                 div.classList.add('goal');
                 div.id = `task-${counter}`;
                 allGoals.append(div);
                 let desc = document.createElement('div');
                 desc.classList.add("goal-description");
-                desc.innerHTML =`
-                    <h3>${task.name}</h3>
-                    <p> до: июль, 2021 </p>
-                    <p> конечная сумма: ${task.sum} </p>
-                    <p> Ежемесячное пополнение: ${result.toFixed(2)} </p>
-                `;
+
+                //********СОЗДАНИЕ БЛОКА******
+                //Название задачи в виде инпута
+                let goalNameBlock = document.createElement('h3');
+                let goalName = document.createElement('input');
+                goalName.classList.add('goal__name');
+                goalName.setAttribute('value',`${task.name}`);
+                goalName.setAttribute('readonly',`readonly`);
+                goalName.classList.add('title');
+
+                goalNameBlock.append(goalName);
+                desc.append(goalNameBlock);
+                // Срок в виде инпута
+                let term = document.createElement('p');
+                term.innerHTML=`Кол-во месяцев:`;
+                let termName = document.createElement('input');
+                termName.classList.add('term__name');
+                termName.setAttribute('value',`${task.term}`);
+                termName.setAttribute('readonly',`readonly`);
+
+                term.append(termName);
+                desc.append(term);
+
+                //Начальная сумма в виде инпута
+                let startSum = document.createElement('p');
+                startSum.innerHTML=`Начальная Сумма:`;
+                let startSumName = document.createElement('input');
+                startSumName.classList.add('start__name');
+                startSumName.setAttribute('value',`${task.starterSum}`);
+                startSumName.setAttribute('readonly',`readonly`);
+
+                startSum.append(startSumName);
+                desc.append(startSum);
+
+
+                //Желаемая сумма
+                let finalAmountBlock = document.createElement('p');
+                finalAmountBlock.innerHTML=`конечная сумма:`;
+                let finalAmount = document.createElement('input');
+                finalAmount.classList.add('final__Amount');
+                finalAmount.setAttribute('value',`${task.sum}`);
+                finalAmount.setAttribute('readonly',`readonly`);
+
+                finalAmountBlock.append(finalAmount);
+                desc.append(finalAmountBlock);
+                // Ежемесячный платеж
+                let monthlyBlock = document.createElement('p');
+                monthlyBlock.innerHTML = `Ежемесячное пополнение: ${result.toFixed(2)}`;
+                monthlyBlock.classList.add('monthly__add');
+                desc.append(monthlyBlock);
                 div.append(desc);
+
+                //*******РЕДАКТИРОВАНИЕ ЭЛЕМЕНТОВ ПРИ ПОМОЧИ ОБРАБОТЧИКОВ СОБЫТИЙ******
+                //Создание кнопки редактировать
+                let redact = document.createElement('img');
+                redact.setAttribute('src','https://image.flaticon.com/icons/svg/1160/1160515.svg');
+                redact.classList.add('red');
+
+                //Создание кнопки закрытия
+                let closeButton = document.createElement('img');
+                closeButton.classList.add('close');
+                closeButton.setAttribute('src','https://image.flaticon.com/icons/svg/190/190406.svg');
+                div.appendChild(redact);
+                div.appendChild(closeButton);
+                closeButton.addEventListener('click',closeBlock);
                 counter++;
+                //Логика нажатия на кнопку редактировать
+                redact.addEventListener('click',(e) =>{
+                   e.preventDefault();
+                       let monthlyAdd = e.target.parentNode.querySelector('.monthly__add'),//Поле ежемесячного платежа
+                       inputs = e.target.parentNode.querySelectorAll('input');//Поля ввода внутри блока goal
+                       inputs.forEach(el => {
+                           el.removeAttribute('readonly');
+                           el.classList.add('edit')
+                       });// Отключение атрибута readonly  во всех инпутах
+                       let save = document.createElement('img');//Создание кнопки сохранения
+                        save.classList.add('red');
+                        save.setAttribute('src','https://image.flaticon.com/icons/svg/380/380020.svg');
+                        div.appendChild(save);
 
-                //  Save task in global variable 
-                GOAL__LIST[div.id] = task;
 
-                //  Add goal delete button and delete handler 
-                const deleteButton = document.createElement('div');
-                deleteButton.innerHTML = '&#10060;';
-                deleteButton.classList.add('delete__button');
-                deleteButton.addEventListener('click', (e) => {
-                    const removableGoal     = e.currentTarget.parentElement;
-                    const removableGoalId   = removableGoal.id;
-                    //  Delete from DOM and GlobalList
-                    removableGoal.parentElement.removeChild(removableGoal);
-                    delete GOAL__LIST[removableGoalId];
-                });
-                div.append(deleteButton);
+                        redact.style.display ='none';//Отключение кнопки педактирования
 
-                //  Add editing click to div and handler
-                div.addEventListener('click', (e) => {
-                    const editableDiv = e.currentTarget;
-                    if(e.target == deleteButton) {
-                        return;
-                    }
-                    const taskId = editableDiv.id;
-                    //  Add taskID data to inputs
-                    document.querySelector('#task__name').value         = GOAL__LIST[taskId].name;
-                    document.querySelector('#task__sum').value          = GOAL__LIST[taskId].sum;
-                    document.querySelector('#task__term').value         = GOAL__LIST[taskId].term;
-                    document.querySelector('#task__start__sum').value   = GOAL__LIST[taskId].starterSum;
-                    // Change buttons: hide add button and mae visile edit button
-                    document.querySelector('.add-button').style.display = 'none';
-                    document.querySelector('.edit-button').style.display = 'inline';
-                    // So we change inputs and call function handleEditClick
+
+                        //Логика сохранения и пересчет введенных данных
+                        save.addEventListener('click',(e) =>{
+                           e.preventDefault();
+                           let termCount = +(e.target.parentNode.querySelector('.term__name').value), // Инициализация всех инпутов
+                               titleName = e.target.parentNode.querySelector('.title').value,
+                               finalName = +(e.target.parentNode.querySelector('.final__Amount').value),
+                               startSumName = +(e.target.parentNode.querySelector('.start__name').value);
+
+                           const newTasks = new Task(titleName,finalName,termCount,startSumName); // Создание прототипа класса  Task
+                           const calculateInside = new Calculator(); // Создание прототипа класса  Calculator
+                           //Передача прототипа в функцию прототипа класса Calculator
+                           calculateInside.calc(newTasks).then(
+                               result => {
+                                    inputs.forEach(el => {
+                                        el.setAttribute('readonly','readonly');
+                                        el.classList.remove('edit');
+                                    });//Добавления атрибута readonly у всех инпутов
+                                    redact.style.display ='inline'; // Возвращение кнопки редактирование
+                                    save.style.display ='none'; // Удаление кнопки сохранения
+
+                                    return monthlyAdd.innerHTML = `Ежемесячное пополнение: ${result.toFixed(2)}`; // Изменение ежемесяной оплаты по новым данным
+                               }
+                           )
+                       });
                 });
             }
-        )
-        .catch(error => {
-            alert(error);
-        });
-    }
-    handleEditClick(e) {
-        const editButton = e.currentTarget;
-        editButton.style.display = 'none';
-        document.querySelector('.add-button').style.display = 'inline';
-        // Edit logic here
-        // ...
 
+        )
     }
 }
-
+//Функция закрытия блока
+function closeBlock(e) {
+    e.preventDefault();
+    if(confirm('Вы уверены что хотите удалить?')){
+        e.target.parentNode.remove();
+    }
+}
 new Application();
