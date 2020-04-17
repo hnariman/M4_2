@@ -8,7 +8,6 @@ body {
 header {
     background-color: #909095;
     height: 70px;
-    z-index: 999999;
 }
 
 h1 {
@@ -23,12 +22,10 @@ h1 {
 .container{
     display: flex;
     justify-content: center;
-    align-items: center;
     flex-direction: row;
-    max-width: 980px;
+    /* max-width: 980px; */
     width: 100%;
     margin: 0 auto;
-    height: 255px;
     background-color: #222831;
 
 }
@@ -38,7 +35,6 @@ h1 {
     flex-direction: column;
     align-items: center;
     width: 40%;
-    height: 235px;
     background-color: #222831;
     padding: 10px;
     color: #e9e7e9;
@@ -75,11 +71,10 @@ h1 {
 
 .all__goals {
     display: flex;
-    width: 70%;
+    width: 60%;
     padding: 10px;
     background-color: #222831;
     color: #e9e7e9;
-    height: 235px;
     flex-direction: column;
     margin: 10px;
 }
@@ -205,3 +200,21 @@ h1 {
     display: flex;
     flex-direction: column;
 }
+
+@media (min-width: 320px) and (max-width: 480px) {
+    .container {
+        flex-direction: column; 
+    }
+
+    .add__goal {
+        width: 90%;
+    }
+
+    .all__goals {
+        width: 90%;
+    }
+
+    .all__goals h2 {
+        margin: auto;
+    }
+  }
