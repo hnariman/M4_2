@@ -29,6 +29,8 @@ h1 {
     width: 100%;
     margin: 0 auto;
     height: 255px;
+    background-color: #222831;
+
 }
 
 .add__goal{
@@ -73,7 +75,7 @@ h1 {
 
 .all__goals {
     display: flex;
-    width: 60%;
+    width: 70%;
     padding: 10px;
     background-color: #222831;
     color: #e9e7e9;
@@ -92,12 +94,9 @@ h1 {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
 }
 
-.goal:hover {
-    background: #ac4661;
-    color: #e9e7e9;
-}
 
 .goal p {
     display: inline;
@@ -136,33 +135,35 @@ h1 {
 .show-results p {
     font-size: 16px;
 }
-
 .goal-description p{
     font-size: 13px;
 }
 
-.error__list {
-    color: #ac4661;
-}
-
-.error__list li {
-    margin-top: 5px;
-}
-
-.delete__button {
+.goal img{
+    width: 18px;
     cursor: pointer;
 }
-
-.add__goal .edit-button {
-    display: none;
-    padding: 8px 20%;
-    background-color: #46ac69;
-    text-decoration: none;
-    border-radius: 8px;
-    color: #e9e7e9;
-    margin-top: 10px;
+.goal p{
+    display: flex;
 }
-
-.add__goal .edit-button:hover {
-    background-color: #31ab5b;
+.goal .title{
+    font-size: 16px;
+}
+.goal input {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: white;
+    font-size: 13px;
+    padding-left: 5px;
+}
+.red{
+    position: absolute;
+    top: 3px;
+    right: 30px;
+}
+.close{
+    position: absolute;
+    top: 3px;
+    right: 0;
 }
