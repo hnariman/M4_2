@@ -104,7 +104,7 @@ h1 {
 }
 
 .goal h3 {
-    margin: 3px 5px 5px 5px;
+    margin: 3px 5px 5px -3px;
 }
 
 .delete-button {
@@ -115,6 +115,7 @@ h1 {
     background-color: #222831;
     box-sizing: border-box;
     border-radius: 71px;
+    margin: 5px;
 
     color: #C4C4C4;
     font-size: 12.5px;
@@ -145,25 +146,62 @@ h1 {
 }
 .goal p{
     display: flex;
+    margin: 5px 0px;
 }
 .goal .title{
     font-size: 16px;
+    font-weight: bold;
 }
 .goal input {
-    background-color: transparent;
+    background-color: transparent; 
     border: none;
     outline: none;
     color: white;
     font-size: 13px;
-    padding-left: 5px;
+    padding: 3px;
+    margin-left: 10px;
+    width: 50%;
+    border-radius: 5px;
 }
 .red{
     position: absolute;
     top: 3px;
     right: 30px;
 }
+
+/* жёстко привязанная кнопка удаления
 .close{
     position: absolute;
     top: 3px;
     right: 0;
+} */
+
+.edit {
+    background-color: rgb(27, 17, 17);
+}
+
+.edit-button {
+    width: 22px;
+    height: 22px;
+
+    border: 1px solid #C4C4C4;
+    background-color: #222831;
+    box-sizing: border-box;
+    border-radius: 71px;
+    margin: 5px;
+
+    color: #C4C4C4;
+    font-size: 12.5px;
+    text-indent: -1.5px;
+}
+
+.edit-button:hover {
+    background: #ac4661;
+    color: #e9e7e9;
+    border: 1px solid #e9e7e9;
+}
+
+.goal-control {
+    display: flex;
+    flex-direction: column;
 }

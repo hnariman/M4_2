@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,23 +9,43 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-<header>
-    <h1>Онлайн Копилка</h1>
-</header>
-<main class="container">
-    <section class="add__goal">
-        <h2>Добавить цель</h2>
-        <input type="text" placeholder="Введите название..." id="task__name">
-        <input type="text" placeholder="Введите желаемую сумму..." id="task__sum">
-        <input type="text" placeholder="Введите срок цели..." id="task__term">
-        <input type="text" placeholder="Введите стартовую сумму..." id="task__start__sum">
-        <a href="#"> Подобрать </a>
-    </section>
-    <section class="all__goals">
-        <h2>Открытые цели</h2>
-    </section>
-</main>
-<script src="dist/main.js"></script>
+    <header>
+        <h1>Онлайн Копилка</h1>
+    </header>
+    <main class="container">
+        <section class="add__goal">
+            <h2>Добавить цель</h2>
+            <input type="text" placeholder="Введите название..." id="task__name">
+            <input type="text" placeholder="Введите желаемую сумму..." id="task__sum">
+            <input type="text" placeholder="Введите срок цели..." id="task__term">
+            <input type="text" placeholder="Введите стартовую сумму..." id="task__start__sum">
+            <a href="#"> Подобрать </a>
+        </section>
+        <section class="all__goals">
+            <h2>Открытые цели</h2>
+            <!-- Эту часть нужно будет удалить -->
+            <div class="goal">
+                <div class="goal-description">
+                    <h3>
+                        <input class="goal__name title edit" type="text" value="На машину">
+                    </h3>
+                    <p> Кол-во месяцев: <input class="term__name edit" type="text" value="8"></p>
+                    <p> Начальная Сумма: <input class="start__name edit" type="text edit" value="10000"> </p>
+                    <p> Конечная сумма: <input class="final__Amount edit" type="text" value="10000"></p>
+                    <p> Ежемесячное пополнение: 4000 </p>
+                </div>
+                <!-- добавлен div -->
+                <div class="goal-control"> 
+                    <button class="edit-button"> 🖉 </button>
+                    <button class="delete-button"> ✕ </button>
+                </div>
+            </div>
+            <!-- конец части для удаления -->
+        </section>
+    </main>
+    <script src="dist/main.js"></script>
 </body>
+
 </html>

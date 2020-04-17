@@ -85,9 +85,12 @@ class Application {
                 redact.classList.add('red');
 
                 //Создание кнопки закрытия
-                let closeButton = document.createElement('img');
-                closeButton.classList.add('close');
-                closeButton.setAttribute('src','https://image.flaticon.com/icons/svg/190/190406.svg');
+                // let closeButton = document.createElement('img');
+                // closeButton.classList.add('close');
+                // closeButton.setAttribute('src','https://image.flaticon.com/icons/svg/190/190406.svg');
+                let closeButton = document.createElement('button');
+                closeButton.classList.add('delete-button');
+
                 div.appendChild(redact);
                 div.appendChild(closeButton);
                 closeButton.addEventListener('click',closeBlock);
@@ -100,6 +103,10 @@ class Application {
                        inputs.forEach(el => {
                            el.removeAttribute('readonly');
                            el.classList.add('edit')
+                           // background-color: rgb(27, 17, 17) - надо добавить самостоятельно как style
+
+
+
                        });// Отключение атрибута readonly  во всех инпутах
                        let save = document.createElement('img');//Создание кнопки сохранения
                         save.classList.add('red');
