@@ -8,7 +8,10 @@ let counter = 0;
 const GOAL__LIST = {};
 class Application {
     constructor() {
+        //  Add buttons listeners
         document.querySelector('.add__goal a').addEventListener('click', this.Run);
+        document.querySelector('.edit-button').addEventListener('click', this.handleEditClick);
+        //  Clear inputs from last iteration
         document.querySelector('#task__name').value = '';
         document.querySelector('#task__sum').value = '';
         document.querySelector('#task__start__sum').value = '';
@@ -89,16 +92,24 @@ class Application {
                     document.querySelector('#task__sum').value          = GOAL__LIST[taskId].sum;
                     document.querySelector('#task__term').value         = GOAL__LIST[taskId].term;
                     document.querySelector('#task__start__sum').value   = GOAL__LIST[taskId].starterSum;
-
-                    // Edit button display block
-                    // Hide add button (display)
-
+                    // Change buttons: hide add button and mae visile edit button
+                    document.querySelector('.add-button').style.display = 'none';
+                    document.querySelector('.edit-button').style.display = 'inline';
+                    // So we change inputs and call function handleEditClick
                 });
             }
         )
         .catch(error => {
             alert(error);
         });
+    }
+    handleEditClick(e) {
+        const editButton = e.currentTarget;
+        editButton.style.display = 'none';
+        document.querySelector('.add-button').style.display = 'inline';
+        // Edit logic here
+        // ...
+
     }
 }
 
